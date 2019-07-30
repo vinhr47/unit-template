@@ -18,7 +18,7 @@ import ${entityPackage}.${entity.name};
 
 public interface ${serviceName} {
 
-	public PageWrapper<${entity.name}> doSearch(int page, ${dtoSearchName} searchDto);
+	public PageWrapper<${entity.name}> doSearch(int page, ${dtoSearchName} searchDto, int pageSize);
 	
 	public void saveOrUpdate(${entity.name} ${uncapitalizedEntityName});
 

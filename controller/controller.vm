@@ -37,6 +37,7 @@ import vn.com.unit.jcanary.constant.CommonConstant;
 import vn.com.unit.jcanary.common.PageWrapper;
 import vn.com.unit.jcanary.constant.UrlConst;
 import vn.com.unit.jcanary.constant.ViewConstant;
+import vn.com.unit.jcanary.utils.SearchSessionUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import vn.com.unit.jcanary.controller.CommonImportExcelInterface;
 import ${ROOT_PKG}.validator.${entity.name}Validator;
@@ -75,7 +76,7 @@ public class ${entity.name}Controller implements CommonImportExcelInterface<${en
 	/**Define Template Excel for Download Template & Export Excel */
 	private static final String TEMPLATE_EXPORT_EXCEL = "TemplateExport"; //ExcelConst.${entity.name};
 	private static final String URL_ENTITY = "/${urlEntityName}";
-
+	private static final String URL_LIST = ${urlEntityName} + UrlConst.LIST;
 	@Autowired
     private ${serviceName} ${uncapitalizedServiceName};
 
@@ -104,16 +105,30 @@ public class ${entity.name}Controller implements CommonImportExcelInterface<${en
      */
     @GetMapping(UrlConst.LIST)
     public ModelAndView showList(@ModelAttribute(value = "searchDto") ${searchDtoName} searchDto
-            , @RequestParam(value = "page", required = false, defaultValue = "1") int page, Locale locale)  {
+			, @RequestParam(value = "pageSize", required = false, defaultValue = "0") int pageSize
+            , @RequestParam(value = "page", required = false, defaultValue = "1") int page, Locale locale, HttpServletRequest request)  {
         // Security for this page.
         if(securityForPage(SCREEN_FUNCTION_CODE)){
 			return new ModelAndView(ViewConstant.ACCESS_DENIED_MODELANDVIEW);
 		}
+		
+		  /* use for get link */
+		SearchSessionUtils<${searchDtoName}> search = new SearchSessionUtils<${searchDtoName}>(searchDto, page, pageSize);
+		searchDto = search.getSearchAttribute(request, URL_LIST, searchDto);
+		
+		page = search.getCurrentPageFromSession(request);
+		pageSize = search.getSizeOfPageFromSession(request);
+		
+		/* END */
         ModelAndView mav = new ModelAndView(VIEW_LIST);
-        PageWrapper<${entity.name}> pageWrapper = ${uncapitalizedServiceName}.doSearch(page, searchDto);
-		if(pageWrapper.getData()== null) {
-        	pageWrapper.setData(new ArrayList<>());
-        }
+        PageWrapper<${entity.name}> pageWrapper = ${uncapitalizedServiceName}.doSearch(page, searchDto, pageSize);
+		if (pageWrapper.getCountAll() == 0) {
+			// Init message list
+			MessageList messageList = new MessageList(Message.INFO);
+			String msgInfo = msg.getMessage(ConstantCore.MSG_INFO_SEARCH_NO_DATA, null, null);
+			messageList.add(msgInfo);
+			mav.addObject(ConstantCore.MSG_LIST, messageList);
+		}
         mav.addObject("pageWrapper", pageWrapper);
         mav.addObject("searchDto", searchDto);
         return mav;
@@ -130,13 +145,14 @@ public class ${entity.name}Controller implements CommonImportExcelInterface<${en
      */
     @PostMapping(UrlConst.AJAXLIST)
     public ModelAndView ajaxListEmail(@ModelAttribute(value = "searchDto") ${searchDtoName} searchDto
+			, @RequestParam(value = "pageSize", required = false, defaultValue = "0") int pageSize
             , @RequestParam(value = "page", required = false, defaultValue = "1") int page, Locale locale)  {
         ModelAndView mav = new ModelAndView(VIEW_TABLE);
         // Security for this page.
         if(securityForPage(SCREEN_FUNCTION_CODE)){
 			return new ModelAndView(ViewConstant.ACCESS_DENIED_MODELANDVIEW);
 		}
-        PageWrapper<${entity.name}> pageWrapper = ${uncapitalizedServiceName}.doSearch(page, searchDto);
+        PageWrapper<${entity.name}> pageWrapper = ${uncapitalizedServiceName}.doSearch(page, searchDto, pageSize);
         if( pageWrapper.getCountAll() == 0 ) {
             // Init message list
             MessageList messageList = new MessageList(Message.INFO);
@@ -144,7 +160,10 @@ public class ${entity.name}Controller implements CommonImportExcelInterface<${en
             messageList.add(msgInfo);
             mav.addObject(ConstantCore.MSG_LIST, messageList);
         } 
-        
+        /* use for get link */
+		SearchSessionUtils<${searchDtoName}> search = new SearchSessionUtils<${searchDtoName}>(searchDto, page, pageSize);
+		search.setSearchAttribute(request, URL_LIST, searchDto);
+		/* END */
         mav.addObject("pageWrapper", pageWrapper);
         mav.addObject("searchDto", searchDto);
         return mav;
@@ -311,7 +330,7 @@ public class ${entity.name}Controller implements CommonImportExcelInterface<${en
 	*/
     @Override
     public PageWrapper<${entity.name}Import> searchImport(int page, String importId, String sortRowNum, String sortMessage, Locale locale, String optionSort, int pageSize, ModelAndView mav) throws Exception {
-        return ${uncapitalizedEntityName}ImportService.searchImport(page, importId, sortRowNum, sortMessage, ${entity.name}Import.class, locale, optionSort, pageSize, mav);
+        return ${uncapitalizedEntityName}ImportService.searchImport(page, importId, sortRowNum, sortMessage, ${entity.name}Import.class, locale, optionSort, pageSize);
     }
 	
 	/**
@@ -379,5 +398,5 @@ public class ${entity.name}Controller implements CommonImportExcelInterface<${en
     public String getViewImportTable() {
         return VIEW_IMPORT_TABLE;
 	}
-	
+
 }
