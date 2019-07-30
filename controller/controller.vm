@@ -76,7 +76,7 @@ public class ${entity.name}Controller implements CommonImportExcelInterface<${en
 	/**Define Template Excel for Download Template & Export Excel */
 	private static final String TEMPLATE_EXPORT_EXCEL = "TemplateExport"; //ExcelConst.${entity.name};
 	private static final String URL_ENTITY = "/${urlEntityName}";
-	private static final String URL_LIST = ${urlEntityName} + UrlConst.LIST;
+	private static final String URL_LIST = "${urlEntityName}" + UrlConst.LIST;
 	@Autowired
     private ${serviceName} ${uncapitalizedServiceName};
 

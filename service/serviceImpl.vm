@@ -78,8 +78,9 @@ public class ${serviceImplName} implements ${serviceName}{
 
 	@Override
     public PageWrapper<${entity.name}> doSearch(int page, ${dtoSearchName} searchDto, int pageSize) {
+		PageWrapper<${entity.name}> pageWrapper = new PageWrapper<>();
         int sizeOfPage = systemConfig.settingPageSizeList(pageSize,pageWrapper ,page);
-        PageWrapper<${entity.name}> pageWrapper = new PageWrapper<${entity.name}>(page, sizeOfPage, pageSize);
+  
         if (null == searchDto)
             searchDto = new ${dtoSearchName}();
 
