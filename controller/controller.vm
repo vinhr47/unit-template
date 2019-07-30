@@ -100,7 +100,7 @@ public class ${entity.name}Controller implements CommonImportExcelInterface<${en
      * @param page
      * @param locale
      * @return
-     * @author phatvt
+     * @author ${user}
      */
     @GetMapping(UrlConst.LIST)
     public ModelAndView showList(@ModelAttribute(value = "searchDto") ${searchDtoName} searchDto
@@ -126,7 +126,7 @@ public class ${entity.name}Controller implements CommonImportExcelInterface<${en
      * @param page
      * @param locale
      * @return
-     * @author phatvt
+     * @author ${user}
      */
     @PostMapping(UrlConst.AJAXLIST)
     public ModelAndView ajaxListEmail(@ModelAttribute(value = "searchDto") ${searchDtoName} searchDto
@@ -157,7 +157,7 @@ public class ${entity.name}Controller implements CommonImportExcelInterface<${en
      * @param page
      * @param locale
      * @return
-     * @author phatvt
+     * @author ${user}
      */
 	@GetMapping(UrlConst.EDIT)
     public ModelAndView getEdit(@RequestParam(value = "id", required = false) Long id, Locale locale) {
@@ -187,7 +187,7 @@ public class ${entity.name}Controller implements CommonImportExcelInterface<${en
      * @param redirectAttributes
      * @param request
      * @return ModelAndView
-     * @author phatvt
+     * @author ${user}
      */
     @PostMapping(UrlConst.EDIT)
     public ModelAndView postEdit(@Valid @ModelAttribute(value = "${uncapitalizedEntityName}") ${entity.name} ${uncapitalizedEntityName}, BindingResult bindingResult,
@@ -240,7 +240,7 @@ public class ${entity.name}Controller implements CommonImportExcelInterface<${en
      * @param redirectAttributes
      * @param request
      * @return ModelAndView
-     * @author phatvt
+     * @author ${user}
      */
     @PostMapping(UrlConst.DELETE)
     public ModelAndView postDelete(@RequestParam(value = "id", required = true) Long id,
@@ -269,7 +269,7 @@ public class ${entity.name}Controller implements CommonImportExcelInterface<${en
      * @param id
      * @param locale
      * @return
-     * @author phatvt
+     * @author ${user}
      */
     @GetMapping(UrlConst.DETAIL)
     public ModelAndView getDetail(@RequestParam(value = "id", required = true) Long id, Locale locale) {
@@ -297,7 +297,7 @@ public class ${entity.name}Controller implements CommonImportExcelInterface<${en
 	 * @param req
 	 * @param res
 	 * @param locale
-	 * @author phatvt
+	 * @author ${user}
 	 */
 	@PostMapping(Ep2pUrlConst.EXPORT_EXCEL)
     public void exportListNonExport(@ModelAttribute(value = "searchDto") $searchDtoName searchDto, HttpServletRequest req,
@@ -307,7 +307,7 @@ public class ${entity.name}Controller implements CommonImportExcelInterface<${en
 
 	/**
 	* do search import display
-	* @author phatvt
+	* @author ${user}
 	*/
     @Override
     public PageWrapper<${entity.name}Import> searchImport(int page, String importId, String sortRowNum, String sortMessage, Locale locale, String optionSort) throws Exception {
@@ -316,7 +316,7 @@ public class ${entity.name}Controller implements CommonImportExcelInterface<${en
 	
 	/**
 	* Template for Export data
-	* @author phatvt
+	* @author ${user}
 	*/
     @Override
     public String getTemplateName(Locale locale) {
@@ -325,7 +325,7 @@ public class ${entity.name}Controller implements CommonImportExcelInterface<${en
 	
 	/**
 	* Validate data before import to table temp
-	* @author phatvt
+	* @author ${user}
 	*/
     @Override
     public void validateListData(List<${entity.name}Import> lstT, Locale locale) throws Exception {
@@ -334,7 +334,7 @@ public class ${entity.name}Controller implements CommonImportExcelInterface<${en
 	
 	/**
 	* save data import to table temp
-	* @author phatvt
+	* @author ${user}
 	*/
     @Override
     public void saveLstImport(List<${entity.name}Import> lstT) {
@@ -353,7 +353,7 @@ public class ${entity.name}Controller implements CommonImportExcelInterface<${en
 	
 	/**
 	* get url for go back list display after import data
-	* @author phatvt
+	* @author ${user}
 	*/
 	@Override
 	public String getUrlController() {
