@@ -146,7 +146,7 @@ public class ${entity.name}Controller implements CommonImportExcelInterface<${en
     @PostMapping(UrlConst.AJAXLIST)
     public ModelAndView ajaxListEmail(@ModelAttribute(value = "searchDto") ${searchDtoName} searchDto
 			, @RequestParam(value = "pageSize", required = false, defaultValue = "0") int pageSize
-            , @RequestParam(value = "page", required = false, defaultValue = "1") int page, Locale locale)  {
+            , @RequestParam(value = "page", required = false, defaultValue = "1") int page, Locale locale, HttpServletRequest request)  {
         ModelAndView mav = new ModelAndView(VIEW_TABLE);
         // Security for this page.
         if(securityForPage(SCREEN_FUNCTION_CODE)){
