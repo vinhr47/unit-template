@@ -299,7 +299,7 @@ public class ${entity.name}Controller implements CommonImportExcelInterface<${en
 	 * @param locale
 	 * @author telosys
 	 */
-	@PostMapping(Ep2pUrlConst.EXPORT_EXCEL)
+	@PostMapping(DmsUrlConst.EXPORT_EXCEL)
     public void exportListNonExport(@ModelAttribute(value = "searchDto") $searchDtoName searchDto, HttpServletRequest req,
             HttpServletResponse res, Locale locale) {
             ${uncapitalizedServiceName}.exportExcel(searchDto, res, locale);
@@ -310,8 +310,8 @@ public class ${entity.name}Controller implements CommonImportExcelInterface<${en
 	* @author telosys
 	*/
     @Override
-    public PageWrapper<${entity.name}Import> searchImport(int page, String importId, String sortRowNum, String sortMessage, Locale locale, String optionSort) throws Exception {
-        return ${uncapitalizedEntityName}ImportService.searchImport(page, importId, sortRowNum, sortMessage, ${entity.name}Import.class, locale, optionSort);
+    public PageWrapper<${entity.name}Import> searchImport(int page, String importId, String sortRowNum, String sortMessage, Locale locale, String optionSort, int pageSize, ModelAndView mav) throws Exception {
+        return ${uncapitalizedEntityName}ImportService.searchImport(page, importId, sortRowNum, sortMessage, ${entity.name}Import.class, locale, optionSort, pageSize, mav);
     }
 	
 	/**
@@ -342,7 +342,7 @@ public class ${entity.name}Controller implements CommonImportExcelInterface<${en
     }
 
     @Override
-    public boolean moveTempDataToMainTable(String importId){
+    public boolean moveTempDataToMainTable(String importId, Locale locale){
     	try{
     		${uncapitalizedServiceName}.moveTempDataToMainTable(importId);
     		return true;

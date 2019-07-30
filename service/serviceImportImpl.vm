@@ -8,15 +8,17 @@
 #set( $dataFields = $entity.getAttributesByCriteria( $const.NOT_KEY, $const.NOT_IN_SELECTED_LINKS ) )
 package ${target.javaPackageFromFolder($SRC)};
 
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import vn.com.unit.jcanary.authentication.UserProfileUtils;
 import vn.com.unit.jcanary.repository.CommonImportExcelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import vn.com.unit.jcanary.config.SystemConfig;
 import ${ROOT_PKG}.service.${entity.name}ImportService;
-import ${entityPackage}.entity.${entity.name}Import;
+import ${entityPackage}.${entity.name}Import;
 
 //-- Repository
 import ${entityRepository}.${repositoryName};
