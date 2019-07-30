@@ -24,7 +24,7 @@ public interface ${repositoryName} extends MirageRepository<${entity.name}, Long
      * @param sizeOfPage
      * @param searchDto
      * @return
-     * @author phatvt
+     * @author telosys
      */
     public List<${entity.name}> findAll${entity.name}sByCondition(
             @Param("offset") int offset,
@@ -36,7 +36,7 @@ public interface ${repositoryName} extends MirageRepository<${entity.name}, Long
      *
      * @param searchDto
      * @return
-     * @author phatvt
+     * @author telosys
      */
     public int count${entity.name}ByCondition( @Param("searchDto")${dtoSearchName} searchDto);
 
@@ -45,7 +45,7 @@ public interface ${repositoryName} extends MirageRepository<${entity.name}, Long
      *
      * @param searchDto
      * @return
-     * @author phatvt
+     * @author telosys
      */
 	public List<${entity.name}> exportExcelWithCondition(
             @Param("searchDto") ${dtoSearchName} searchDto);

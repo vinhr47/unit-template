@@ -39,10 +39,10 @@ import vn.com.unit.jcanary.constant.UrlConst;
 import vn.com.unit.jcanary.constant.ViewConstant;
 import org.springframework.web.bind.annotation.PostMapping;
 import vn.com.unit.jcanary.controller.CommonImportExcelInterface;
-import vn.com.unit.ep2p.validator.${entity.name}Validator;
-import vn.com.unit.ep2p.service.${entity.name}ImportService;
-import vn.com.unit.ep2p.entity.${entity.name}Import;
-import vn.com.unit.ep2p.constant.Ep2pUrlConst;
+import ${ROOT_PKG}.validator.${entity.name}Validator;
+import ${ROOT_PKG}.service.${entity.name}ImportService;
+import ${ROOT_PKG}.entity.${entity.name}Import;
+import ${ROOT_PKG}.constant.DmsUrlConst;
 
 //--- import Entities
 import ${entityPackage}.${entity.name};
@@ -100,7 +100,7 @@ public class ${entity.name}Controller implements CommonImportExcelInterface<${en
      * @param page
      * @param locale
      * @return
-     * @author ${user}
+     * @author telosys
      */
     @GetMapping(UrlConst.LIST)
     public ModelAndView showList(@ModelAttribute(value = "searchDto") ${searchDtoName} searchDto
@@ -126,7 +126,7 @@ public class ${entity.name}Controller implements CommonImportExcelInterface<${en
      * @param page
      * @param locale
      * @return
-     * @author ${user}
+     * @author telosys
      */
     @PostMapping(UrlConst.AJAXLIST)
     public ModelAndView ajaxListEmail(@ModelAttribute(value = "searchDto") ${searchDtoName} searchDto
@@ -157,7 +157,7 @@ public class ${entity.name}Controller implements CommonImportExcelInterface<${en
      * @param page
      * @param locale
      * @return
-     * @author ${user}
+     * @author telosys
      */
 	@GetMapping(UrlConst.EDIT)
     public ModelAndView getEdit(@RequestParam(value = "id", required = false) Long id, Locale locale) {
@@ -187,7 +187,7 @@ public class ${entity.name}Controller implements CommonImportExcelInterface<${en
      * @param redirectAttributes
      * @param request
      * @return ModelAndView
-     * @author ${user}
+     * @author telosys
      */
     @PostMapping(UrlConst.EDIT)
     public ModelAndView postEdit(@Valid @ModelAttribute(value = "${uncapitalizedEntityName}") ${entity.name} ${uncapitalizedEntityName}, BindingResult bindingResult,
@@ -240,7 +240,7 @@ public class ${entity.name}Controller implements CommonImportExcelInterface<${en
      * @param redirectAttributes
      * @param request
      * @return ModelAndView
-     * @author ${user}
+     * @author telosys
      */
     @PostMapping(UrlConst.DELETE)
     public ModelAndView postDelete(@RequestParam(value = "id", required = true) Long id,
@@ -269,7 +269,7 @@ public class ${entity.name}Controller implements CommonImportExcelInterface<${en
      * @param id
      * @param locale
      * @return
-     * @author ${user}
+     * @author telosys
      */
     @GetMapping(UrlConst.DETAIL)
     public ModelAndView getDetail(@RequestParam(value = "id", required = true) Long id, Locale locale) {
@@ -297,7 +297,7 @@ public class ${entity.name}Controller implements CommonImportExcelInterface<${en
 	 * @param req
 	 * @param res
 	 * @param locale
-	 * @author ${user}
+	 * @author telosys
 	 */
 	@PostMapping(Ep2pUrlConst.EXPORT_EXCEL)
     public void exportListNonExport(@ModelAttribute(value = "searchDto") $searchDtoName searchDto, HttpServletRequest req,
@@ -307,7 +307,7 @@ public class ${entity.name}Controller implements CommonImportExcelInterface<${en
 
 	/**
 	* do search import display
-	* @author ${user}
+	* @author telosys
 	*/
     @Override
     public PageWrapper<${entity.name}Import> searchImport(int page, String importId, String sortRowNum, String sortMessage, Locale locale, String optionSort) throws Exception {
@@ -316,7 +316,7 @@ public class ${entity.name}Controller implements CommonImportExcelInterface<${en
 	
 	/**
 	* Template for Export data
-	* @author ${user}
+	* @author telosys
 	*/
     @Override
     public String getTemplateName(Locale locale) {
@@ -325,7 +325,7 @@ public class ${entity.name}Controller implements CommonImportExcelInterface<${en
 	
 	/**
 	* Validate data before import to table temp
-	* @author ${user}
+	* @author telosys
 	*/
     @Override
     public void validateListData(List<${entity.name}Import> lstT, Locale locale) throws Exception {
@@ -334,7 +334,7 @@ public class ${entity.name}Controller implements CommonImportExcelInterface<${en
 	
 	/**
 	* save data import to table temp
-	* @author ${user}
+	* @author telosys
 	*/
     @Override
     public void saveLstImport(List<${entity.name}Import> lstT) {
@@ -353,7 +353,7 @@ public class ${entity.name}Controller implements CommonImportExcelInterface<${en
 	
 	/**
 	* get url for go back list display after import data
-	* @author ${user}
+	* @author telosys
 	*/
 	@Override
 	public String getUrlController() {

@@ -10,7 +10,7 @@ package ${target.javaPackageFromFolder($SRC)};
 
 import java.util.Locale;
 import java.util.List;
-import vn.com.unit.ep2p.entity.${entity.name}Import;
+import ${ROOT_PKG}.entity.${entity.name}Import;
 import vn.com.unit.jcanary.service.CommonImportExcelService;
 
 public interface ${entity.name}ImportService extends CommonImportExcelService<${entity.name}Import>{
@@ -18,7 +18,7 @@ public interface ${entity.name}ImportService extends CommonImportExcelService<${
      * saveLstData
      *
      * @param lstAccountCodeImport
-     * @author phatvt
+     * @author telosys
      */
     void saveLstData(List<${entity.name}Import> lst${entity.name}Import);
     

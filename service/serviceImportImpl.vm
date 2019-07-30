@@ -15,8 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import vn.com.unit.jcanary.config.SystemConfig;
-import vn.com.unit.ep2p.service.${entity.name}ImportService;
-import vn.com.unit.ep2p.entity.${entity.name}Import;
+import ${ROOT_PKG}.service.${entity.name}ImportService;
+import ${entityPackage}.entity.${entity.name}Import;
 
 //-- Repository
 import ${entityRepository}.${repositoryName};

@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Domain class for dto "${entity.name}"
  *
- * @author phatvt
+ * @author telosys
  *
  */
 public class ${entity.name}SearchDto {

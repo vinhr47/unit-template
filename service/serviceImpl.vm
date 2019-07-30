@@ -34,8 +34,8 @@ import vn.com.unit.jcanary.utils.ImportExcelUtil;
 import vn.com.unit.dto.ItemColsExcelDto;
 import javax.servlet.ServletContext;
 import jp.sf.amateras.mirage.SqlManager;
-import vn.com.unit.ep2p.dto.TransferDataImportParam;
-import vn.com.unit.ep2p.constant.ExcelConst;
+import ${ROOT_PKG}.dto.TransferDataImportParam;
+import ${ROOT_PKG}.constant.ExcelConst;
 
 //--- Entities
 import ${entityPackage}.${entity.name};
