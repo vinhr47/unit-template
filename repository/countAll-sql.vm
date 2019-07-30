@@ -14,4 +14,4 @@ WHERE
 #end
 #end
 #end
-AND tb_.delete_flag = 0
+AND tb_.deleted_flag = 0
